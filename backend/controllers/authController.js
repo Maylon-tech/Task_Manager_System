@@ -9,13 +9,10 @@ const generateToken = (userId) => {
     )
 }
 
-
-
 // @desc Register a new user
 // @route POST /api/auth/register
 // @access Public
 const registerUser = async (req, res) => {
-
     try {
         const {
             name,
@@ -65,7 +62,6 @@ const registerUser = async (req, res) => {
         res.status(500).json({ message: "Server Error", error: error.message })
     }
 }
-
 
 // @desc Login a new user
 // @route POST /api/auth/login
