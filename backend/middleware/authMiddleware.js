@@ -1,10 +1,10 @@
-import User from '../models/User'
+import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
 
 // Middleware to protect routes
-const protect = async (req, resizeBy, next) => {
+export const protect = async (req, resizeBy, next) => {
     try {
-        let token = req.headers.authorizatoin
+        let token = req.headers.authorization
 
         if (token && token.startsWith("Bearer")) {
             token = token.split(" ")  // Extract Token
@@ -12,7 +12,7 @@ const protect = async (req, resizeBy, next) => {
             req.user = await User.findById(decoded.id).select("-password")
             next()
         } else {
-            res.status(401).json({ message: "Not autorized no token " })
+            res.status(401).json({ message: "Not autorized, no token " })
         }
     } catch (error) {
         res.status(401).json({ message: "Token Failed!! " })
@@ -20,15 +20,15 @@ const protect = async (req, resizeBy, next) => {
 }
 
 // Middleware for Admin-only access
-const adminOnly = (req, res, next) => {
+export const adminOnly = (req, res, next) => {
     if (req.user && req.user.role === "admin") {
         next()
     } else {
-        res.status(403).json({ message: "Access Deniedm admin only" })
+        res.status(403).json({ message: "Access Denided, admin only" })
     }
 }
 
-export default {
-    protect,
-    adminOnly
-}
+// export default {
+//     protect,
+//     adminOnly
+// }

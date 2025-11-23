@@ -1,4 +1,4 @@
-import User from '../models/User'
+import User from '../models/User.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -12,7 +12,7 @@ const generateToken = (userId) => {
 // @desc Register a new user
 // @route POST /api/auth/register
 // @access Public
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
     try {
         const {
             name,
@@ -66,7 +66,7 @@ const registerUser = async (req, res) => {
 // @desc Login a new user
 // @route POST /api/auth/login
 // @access Private (Requires JWT)
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
     
     try {
 
@@ -78,7 +78,7 @@ const loginUser = async (req, res) => {
 // @desc Get user profile
 // @route GET /api/auth/profile
 // @access Private (Requires JWT)
-const getUserProfile = async (req, res) => {
+export const getUserProfile = async (req, res) => {
     
     try {
 
@@ -91,7 +91,7 @@ const getUserProfile = async (req, res) => {
 // @desc Update user profile
 // @route PUT /api/auth/profile
 // @access Private (Requires JWT)
-const updateUserProfile = async (req, res) => {
+export const updateUserProfile = async (req, res) => {
     
     try {
 
@@ -100,9 +100,9 @@ const updateUserProfile = async (req, res) => {
     }
 }
 
-export default {
-    registerUser,
-    loginUser,
-    getUserProfile,
-    updateUserProfile
-}
+// export default {
+//     registerUser,
+//     loginUser,
+//     getUserProfile,
+//     updateUserProfile
+// }
